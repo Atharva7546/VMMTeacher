@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "724542159121",
+    "project_id": "notify-1870a",
+    "storage_bucket": "notify-1870a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:724542159121:android:0a3d2d98159da81954b4b0",
+        "android_client_info": {
+          "package_name": "com.vmmteacher"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "724542159121-h2vm462tlugdj30ro4msl91ptv2bgs0n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVKzTKKDA-AfrLSdQLwvbeFZpNG6tuh3w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "724542159121-h2vm462tlugdj30ro4msl91ptv2bgs0n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
