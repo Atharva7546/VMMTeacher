@@ -22,7 +22,7 @@ const Login = ({ navigation }) => {
       if (isLoggedIn === 'true') {
         const localEmail = await AsyncStorage.getItem('teacherEmail');
         const localPassword = await AsyncStorage.getItem('password');
-       const response = await fetch('https://demo.vmmhs.org/admin/ApiController/teacherLogin', {
+       const response = await fetch('http://localhost/code3/index.php/admin/ApiController/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -42,7 +42,7 @@ const Login = ({ navigation }) => {
   //  navigation.navigate(ROUTES.HOME);
     if (username !== '' && password !== '') {
       try {
-        const response = await fetch('https://demo.vmmhs.org/admin/ApiController/teacherLogin', {
+        const response = await fetch('http:/192.168.1.7/code3/index.php/admin/ApiController/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -51,21 +51,22 @@ const Login = ({ navigation }) => {
         });
 
         const data = await response.json();
-        //console.log(data); // Log the response for debugging
+        console.log(data); // Log the response for debugging
 
-        if (data.responseCode === 200) {
+        if (response.ok) {
           // Login successful, store the user type in async storage
-          await AsyncStorage.setItem('isLoggedIn', 'true');
-          await AsyncStorage.setItem('teacherEmail',data.teacherEmail);
-          await AsyncStorage.setItem('teacherName',data.teacherName);
+          // await AsyncStorage.setItem('isLoggedIn', 'true');
+          // await AsyncStorage.setItem('teacherEmail',data.teacherEmail);
+          // await AsyncStorage.setItem('teacherName',data.teacherName);
           // await AsyncStorage.setItem('id',data.id);
-          await AsyncStorage.setItem('className',data.className);
-          await AsyncStorage.setItem('password',password);
-          fetchTeacherDetails(data.teacherEmail);
+          // await AsyncStorage.setItem('className',data.className);
+          // await AsyncStorage.setItem('password',password);
+          // fetchTeacherDetails(data.teacherEmail);
           navigation.navigate(ROUTES.HOME);
         } else {
           // Login failed, display error message
           Alert.alert('Login Failed', 'Please enter valid login details');
+          // navigation.navigate(ROUTES.HOME);
         }
       } catch (error) {
         console.error('Error:', error);
@@ -99,11 +100,16 @@ const Login = ({ navigation }) => {
           value={password}
         />
       </View>
-      {/* <TouchableOpacity onPress={() => navigation.navigate(ROUTES.FORGOT_PASSWORD)}>
-        <Text style={styles.forgot}>Forgot Password?</Text>
-      </TouchableOpacity> */}
+      
       <TouchableOpacity style={styles.loginBtn} onPress={handleLogin}>
         <Text style={styles.loginText}>LOGIN</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate(ROUTES.FORGOT_PASSWORD)}>
+        <Text style={styles.forgot}>Forgot Password?</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate(ROUTES.REGISTER)}>
+        <Text style={styles.loginText}>Register/signup</Text>
       </TouchableOpacity>
       {/* <TouchableOpacity onPress={() => navigation.navigate(ROUTES.REGISTER)}>
         <Text style={styles.signup}>Don't have an account? Sign up</Text>
