@@ -25,17 +25,8 @@ const Register = ({navigation}) => {
         console.log(data); // Log the response for debugging
 
         if (response.ok) {
-          // Login successful, store the user type in async storage
-          // await AsyncStorage.setItem('isLoggedIn', 'true');
-          // await AsyncStorage.setItem('teacherEmail',data.teacherEmail);
-          // await AsyncStorage.setItem('teacherName',data.teacherName);
-          // await AsyncStorage.setItem('id',data.id);
-          // await AsyncStorage.setItem('className',data.className);
-          // await AsyncStorage.setItem('password',password);
-          // fetchTeacherDetails(data.teacherEmail);
           navigation.navigate(ROUTES.LOGIN);
         } else {
-          // Login failed, display error message
           Alert.alert('Login Failed', 'Please enter valid login details');
         }
       } catch (error) {

@@ -9,7 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({ navigation }) => {
   
-  const [username, setUsername] = useState('');
+  const [email, setemail] = useState('');
   const [password, setPassword] = useState('');
 
   useEffect(() => {
@@ -20,14 +20,14 @@ const Login = ({ navigation }) => {
     try {
       const isLoggedIn = await AsyncStorage.getItem('isLoggedIn');
       if (isLoggedIn === 'true') {
-        const localEmail = await AsyncStorage.getItem('teacherEmail');
-        const localPassword = await AsyncStorage.getItem('password');
-       const response = await fetch('http://localhost/code3/index.php/admin/ApiController/login', {
+        const email = await AsyncStorage.getItem('email');
+        const password = await AsyncStorage.getItem('password');
+       const response = await fetch('http:/192.168.1.7/code3/index.php/admin/ApiController/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
-          body: `email=${encodeURIComponent(localEmail)}&password=${encodeURIComponent(localPassword)}`,
+          body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
         });
 
         const data = await response.json();
@@ -40,14 +40,14 @@ const Login = ({ navigation }) => {
 
   const handleLogin = async () => {
   //  navigation.navigate(ROUTES.HOME);
-    if (username !== '' && password !== '') {
+    if (email !== '' && password !== '') {
       try {
         const response = await fetch('http:/192.168.1.7/code3/index.php/admin/ApiController/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
-          body: `email=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`,
+          body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
         });
 
         const data = await response.json();
@@ -56,12 +56,12 @@ const Login = ({ navigation }) => {
         if (response.ok) {
           // Login successful, store the user type in async storage
           // await AsyncStorage.setItem('isLoggedIn', 'true');
-          // await AsyncStorage.setItem('teacherEmail',data.teacherEmail);
+          await AsyncStorage.setItem('email',email);
           // await AsyncStorage.setItem('teacherName',data.teacherName);
           // await AsyncStorage.setItem('id',data.id);
           // await AsyncStorage.setItem('className',data.className);
-          // await AsyncStorage.setItem('password',password);
-          // fetchTeacherDetails(data.teacherEmail);
+          await AsyncStorage.setItem('password',password);
+          // fetchTeacherDetails(data.email);
           navigation.navigate(ROUTES.HOME);
         } else {
           // Login failed, display error message
@@ -86,8 +86,8 @@ const Login = ({ navigation }) => {
           style={styles.inputText}
           placeholder="User ID"
           placeholderTextColor="#003f5c"
-          onChangeText={text => setUsername(text)}
-          value={username}
+          onChangeText={text => setemail(text)}
+          value={email}
         />
       </View>
       <View style={styles.inputView}>

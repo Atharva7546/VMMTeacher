@@ -178,7 +178,7 @@ const Home = ({ navigation }) => {
       id: 1,
       title: 'Add Students',
       route: ROUTES.AddStudent,
-      image: require('../../assets/addstudent.png'),
+      image: require('../../assets/Screening.png'),
     },
     {
       id: 2,
@@ -198,12 +198,12 @@ const Home = ({ navigation }) => {
       route: ROUTES.ACTIVITES,
       image: require('../../assets/update.png'),
     },
-    {
-      id: 5,
-      title: 'Gallery',
-      route: ROUTES.Gallery,
-      image: require('../../assets/gallery.png'),
-    },
+    // {
+    //   id: 5,
+    //   title: 'Gallery',
+    //   route: ROUTES.Gallery,
+    //   image: require('../../assets/gallery.png'),
+    // },
     // {
     //   id: 6,
     //   title: 'Send Notifications',
