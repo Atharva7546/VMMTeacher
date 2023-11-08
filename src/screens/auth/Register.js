@@ -1,36 +1,39 @@
 import React, { useState, useEffect } from 'react';
+import { COLORS, ROUTES } from '../../constants';
 import {View,Alert, Text, TextInput, TouchableOpacity, StyleSheet,Image} from 'react-native';
 
-const Register = () => {
+const Register = ({navigation}) => {
 
-  const [Name, setName] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const[gender,setGender ]= useState('');
   const [password, setPassword] = useState('');
 
   const handleRegister = async () => {
     //  navigation.navigate(ROUTES.HOME);
-      if (username !== '' && password !== '') {
+      if (name !== '' && password !== '' && email !='' && gender !='') {
         try {
-          const response = await fetch('https://demo.vmmhs.org/admin/ApiController/teacherLogin', {
+          const response = await fetch('http://192.168.1.7/code3/index.php/admin/ApiController/register', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: `email=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`,
+            body: `name=${encodeURIComponent(name)}&password=${encodeURIComponent(password)}&email=${encodeURIComponent(email)}&gender=${encodeURIComponent(gender)}`,
           });
 
           const data = await response.json();
-        //console.log(data); // Log the response for debugging
+        console.log(data); // Log the response for debugging
 
-        if (data.responseCode === 200) {
+        if (response.ok) {
           // Login successful, store the user type in async storage
-          await AsyncStorage.setItem('isLoggedIn', 'true');
-          await AsyncStorage.setItem('teacherEmail',data.teacherEmail);
-          await AsyncStorage.setItem('teacherName',data.teacherName);
+          // await AsyncStorage.setItem('isLoggedIn', 'true');
+          // await AsyncStorage.setItem('teacherEmail',data.teacherEmail);
+          // await AsyncStorage.setItem('teacherName',data.teacherName);
           // await AsyncStorage.setItem('id',data.id);
-          await AsyncStorage.setItem('className',data.className);
-          await AsyncStorage.setItem('password',password);
-          fetchTeacherDetails(data.teacherEmail);
-          navigation.navigate(ROUTES.HOME);
+          // await AsyncStorage.setItem('className',data.className);
+          // await AsyncStorage.setItem('password',password);
+          // fetchTeacherDetails(data.teacherEmail);
+          navigation.navigate(ROUTES.LOGIN);
         } else {
           // Login failed, display error message
           Alert.alert('Login Failed', 'Please enter valid login details');
@@ -57,17 +60,17 @@ const Register = () => {
           placeholder="Full Name"
           placeholderTextColor="#003f5c"
           onChangeText={text => setName(text)}
-          value={Name}
+          value={name}
         />
       </View>
 
       <View style={styles.inputView}>
         <TextInput
           style={styles.inputText}
-          placeholder="Date of Birth"
+          placeholder="Gender"
           placeholderTextColor="#003f5c"
-          onChangeText={text => setEmail(text)}
-          // value={username}
+          onChangeText={text => setGender(text)}
+          value={gender}
         />
       </View>
       
@@ -77,7 +80,7 @@ const Register = () => {
           placeholder="Email ID"
           placeholderTextColor="#003f5c"
           onChangeText={text => setEmail(text)}
-          // value={username}
+          value={email}
         />
       </View>
       <View style={styles.inputView}>
