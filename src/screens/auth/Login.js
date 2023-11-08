@@ -78,8 +78,8 @@ const Login = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Image source={require('../../assets/logovmm.png')} style={styles.logo} />
-      <Text style={styles.name}>VMMHS Teacher</Text>
+      <Image source={require('../../assets/logo.png')} style={styles.logo} />
+      <Text style={styles.name}>MIND-FIT</Text>
       <View style={styles.inputView}>
         <TextInput
           style={styles.inputText}

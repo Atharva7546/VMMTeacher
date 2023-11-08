@@ -20,14 +20,15 @@ const Splash = ({ navigation }) => {
       backgroundColor: colorScheme === 'dark' ? '#000' : '#fff',
     },
     logo:{
-      // height:300,
-      // width:300,
+      height:300,
+      width:300,
+      alignItems: 'center',
     }
    
   });
   return (
     <View style={styles.container}>
-      <Image source={require('../../assets/logovmm.png')} style={styles.logo} />
+      <Image source={require('../../assets/logo.png')} style={styles.logo} />
     </View>
   );
 };
