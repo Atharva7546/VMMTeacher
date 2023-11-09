@@ -104,13 +104,13 @@
 //   },
 // });
 import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {StyleSheet, TouchableOpacity} from 'react-native';
-import {COLORS, ROUTES} from '../constants';
-import {Home, Wallet, Notifications, Settings} from '../screens';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import { COLORS, ROUTES } from '../constants';
+import { Home, Wallet, Notifications, Settings } from '../screens';
 import Icon from 'react-native-vector-icons/Ionicons';
 import SettingsNavigator from './SettingsNavigator';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import HomeNavigator from './HomeNavigator';
 
 const Tab = createBottomTabNavigator();
@@ -120,14 +120,14 @@ function BottomTabNavigator() {
 
   return (
     <Tab.Navigator
-      screenOptions={({route}) => ({
+      screenOptions={({ route }) => ({
         headerShown: false,
         tabBarActiveTintColor: COLORS.primary,
         tabBarInactiveTintColor: COLORS.dark,
         tabBarShowLabel: false,
         tabBarStyle: styles.tabBarStyle,
         tabBarItemStyle: styles.tabStyle,
-        tabBarIcon: ({color, size, focused}) => {
+        tabBarIcon: ({ color, size, focused }) => {
           let iconName;
 
           if (route.name === ROUTES.HOME_TAB) {
@@ -146,27 +146,27 @@ function BottomTabNavigator() {
         },
       })}>
       <Tab.Screen name={ROUTES.HOME_TAB} component={HomeNavigator}
-       options={{
-        tabBarLabel: 'Home',
-        tabBarIcon: ({color, size, focused}) => (
-          <Icon name={focused ? 'home' : 'home-outline'} size={28} color={color} />
-        ),
-        headerShown: true,
-        title: 'Teacher',
-        headerLeft: () => {
-          return (
-            <TouchableOpacity onPress={() => navigation.openDrawer()}>
-              <Icon
-                name={Platform.OS === 'ios' ? 'ios-menu' : 'md-menu'}
-                size={30}
-                color={COLORS.dark}
-                style={{marginLeft: 20}}
-              />
-            </TouchableOpacity>
-          );
-        },
-      }}
-       />
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: ({ color, size, focused }) => (
+            <Icon name={focused ? 'home' : 'home-outline'} size={28} color={color} />
+          ),
+          headerShown: true,
+          title: 'Teacher',
+          headerLeft: () => {
+            return (
+              <TouchableOpacity onPress={() => navigation.openDrawer()}>
+                <Icon
+                  name={Platform.OS === 'ios' ? 'ios-menu' : 'md-menu'}
+                  size={30}
+                  color={COLORS.dark}
+                  style={{ marginLeft: 20 }}
+                />
+              </TouchableOpacity>
+            );
+          },
+        }}
+      />
       {/* <Tab.Screen
         name={ROUTES.SETTINGS_NAVIGATOR}
         component={SettingsNavigator}
@@ -200,61 +200,61 @@ function BottomTabNavigator() {
           headerShown: true,
           title: 'Notifications',
         }}/> */}
-        <Tab.Screen
-  name={ROUTES.SETTINGS_NAVIGATOR}
-  component={SettingsNavigator}
-  options={({navigation}) => ({
-    headerShown: true,
-    title: 'Settings',
-    headerStyle: styles.headerStyle,
-    headerTitleStyle: styles.headerTitleStyle,
-    headerTintColor: COLORS.primary,
-    headerLeft: () => (
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Icon
-          name={Platform.OS === 'ios' ? 'arrow-back-outline' : 'arrow-back-outline'}
-          size={30}
-          color={COLORS.dark}
-          style={{marginLeft: 20}}
-        />
-      </TouchableOpacity>
-    ),
-  })}
-/>
+      <Tab.Screen
+        name={ROUTES.SETTINGS_NAVIGATOR}
+        component={SettingsNavigator}
+        options={({ navigation }) => ({
+          headerShown: true,
+          title: 'Settings',
+          headerStyle: styles.headerStyle,
+          headerTitleStyle: styles.headerTitleStyle,
+          headerTintColor: COLORS.primary,
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Icon
+                name={Platform.OS === 'ios' ? 'arrow-back-outline' : 'arrow-back-outline'}
+                size={30}
+                color={COLORS.dark}
+                style={{ marginLeft: 20 }}
+              />
+            </TouchableOpacity>
+          ),
+        })}
+      />
 
-<Tab.Screen
-  name={ROUTES.NOTIFICATIONS}
-  component={Notifications}
-  options={({navigation}) => ({
-    headerShown: true,
-    title: 'Notifications',
-    headerStyle: styles.headerStyle,
-    headerTitleStyle: styles.headerTitleStyle,
-    headerTintColor: COLORS.primary,
-    headerLeft: () => (
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Icon
-          name={Platform.OS === 'ios' ? 'arrow-back-outline' : 'arrow-back-outline'}
-          size={30}
-          color={COLORS.dark}
-          style={{marginLeft: 20}}
-        />
-      </TouchableOpacity>
-    ),
-  })}
-/>
+      <Tab.Screen
+        name={ROUTES.NOTIFICATIONS}
+        component={Notifications}
+        options={({ navigation }) => ({
+          headerShown: true,
+          title: 'Mind',
+          headerStyle: styles.headerStyle,
+          headerTitleStyle: styles.headerTitleStyle,
+          headerTintColor: COLORS.primary,
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Icon
+                name={Platform.OS === 'ios' ? 'arrow-back-outline' : 'arrow-back-outline'}
+                size={30}
+                color={COLORS.dark}
+                style={{ marginLeft: 20 }}
+              />
+            </TouchableOpacity>
+          ),
+        })}
+      />
 
-      
-      
+
+
     </Tab.Navigator>
-    
+
   );
 }
 
 export default BottomTabNavigator;
 
 const styles = StyleSheet.create({
-  
+
   tabBarStyle: {
     backgroundColor: '#fff',
     height: 56,
@@ -265,3 +265,5 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
   },
 });
+
+// #fff
