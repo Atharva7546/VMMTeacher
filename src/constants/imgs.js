@@ -1,4 +1,4 @@
 export default {
-  bgPattern: require('../assets/VmSchool.jpg'),
+  bgPattern: require('../assets/drawer-cover.png'),
   user: require('../assets/user.png'),
 };

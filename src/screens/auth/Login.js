@@ -1,14 +1,139 @@
 
-import React, { useState, useEffect } from 'react';
-import { View,Alert, Text, TextInput, TouchableOpacity, StyleSheet,Image } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import { COLORS, ROUTES } from '../../constants';
-import Logo from '../../assets/icons/LOGO.svg';
-import { useNavigation } from '@react-navigation/native';
+// import React, { useState, useEffect } from 'react';
+// import { View, Alert, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+// import LinearGradient from 'react-native-linear-gradient';
+// import { COLORS, ROUTES } from '../../constants';
+// import Logo from '../../assets/icons/LOGO.svg';
+// import { useNavigation } from '@react-navigation/native';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
+
+// const Login = ({ navigation }) => {
+
+//   const [email, setemail] = useState('');
+//   const [password, setPassword] = useState('');
+
+//   useEffect(() => {
+//     checkLoginStatus();
+//   }, []);
+
+//   const checkLoginStatus = async () => {
+//     try {
+//       const isLoggedIn = await AsyncStorage.getItem('isLoggedIn');
+//       if (isLoggedIn === 'true') {
+//         const email = await AsyncStorage.getItem('email');
+//         const password = await AsyncStorage.getItem('password');
+//         const response = await fetch('http://127.0.0.1:5000/login', {
+//           method: 'POST',
+//           headers: {
+//             'Content-Type': 'application/json',
+//           },
+//           // body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
+//           body: JSON.stringify({   // Convert data to JSON format
+//             email: email,
+//             password: password
+//           }),
+//         });
+
+//         const data = await response.json();
+//         navigation.navigate(ROUTES.HOME);
+//       }
+//     } catch (error) {
+//       console.error('Error:', error);
+//     }
+//   };
+
+//   const handleLogin = async () => {
+//     //  navigation.navigate(ROUTES.HOME);
+//     if (email !== '' && password !== '') {
+//       try {
+//         const response = await fetch('http://127.0.0.1:5000/login', {
+//           method: 'POST',
+//           headers: {
+//             'Content-Type': 'application/json',
+//           },
+//           // body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
+//           body: JSON.stringify({   // Convert data to JSON format
+//             email: email,
+//             password: password
+//           }),
+//         });
+
+//         const data = await response.json();
+//         console.log(data); // Log the response for debugging
+
+//         if (response.ok) {
+//           // Login successful, store the user type in async storage
+//           // await AsyncStorage.setItem('isLoggedIn', 'true');
+//           await AsyncStorage.setItem('email', email);
+//           // await AsyncStorage.setItem('teacherName',data.teacherName);
+//           // await AsyncStorage.setItem('id',data.id);
+//           // await AsyncStorage.setItem('className',data.className);
+//           await AsyncStorage.setItem('password', password);
+//           // fetchTeacherDetails(data.email);
+//           navigation.navigate(ROUTES.HOME);
+//         } else {
+//           // Login failed, display error message
+//           Alert.alert('Login Failed', 'Please enter valid login details');
+//           // navigation.navigate(ROUTES.HOME);
+//         }
+//       } catch (error) {
+//         console.error('Error:', error);
+//         Alert.alert('Error...', 'An error occurred. Please try again later.');
+//       }
+//     } else {
+//       Alert.alert('Info...', 'Please enter both User ID and password.');
+//     }
+//   };
+
+//   return (
+//     <View style={styles.container}>
+//       <Image source={require('../../assets/logo.png')} style={styles.logo} />
+//       <Text style={styles.name}>MIND-FIT</Text>
+//       <View style={styles.inputView}>
+//         <TextInput
+//           style={styles.inputText}
+//           placeholder="User ID"
+//           placeholderTextColor="#003f5c"
+//           onChangeText={text => setemail(text)}
+//           value={email}
+//         />
+//       </View>
+//       <View style={styles.inputView}>
+//         <TextInput
+//           style={styles.inputText}
+//           placeholder="Password"
+//           placeholderTextColor="#003f5c"
+//           secureTextEntry={true}
+//           onChangeText={text => setPassword(text)}
+//           value={password}
+//         />
+//       </View>
+
+//       <TouchableOpacity style={styles.loginBtn} onPress={handleLogin}>
+//         <Text style={styles.loginText}>LOGIN</Text>
+//       </TouchableOpacity>
+//       <TouchableOpacity onPress={() => navigation.navigate(ROUTES.FORGOT_PASSWORD)}>
+//         <Text style={styles.forgot}>Forgot Password?</Text>
+//       </TouchableOpacity>
+
+//       <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate(ROUTES.REGISTER)}>
+//         <Text style={styles.loginText}>Register/signup</Text>
+//       </TouchableOpacity>
+//       {/* <TouchableOpacity onPress={() => navigation.navigate(ROUTES.REGISTER)}>
+//         <Text style={styles.signup}>Don't have an account? Sign up</Text>
+//       </TouchableOpacity> */}
+//     </View>
+//   );
+// };
+
+
+
+
+import React, { useState,useEffect} from 'react';
+import { View, Alert, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({ navigation }) => {
-  
   const [email, setemail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -20,53 +145,48 @@ const Login = ({ navigation }) => {
     try {
       const isLoggedIn = await AsyncStorage.getItem('isLoggedIn');
       if (isLoggedIn === 'true') {
-        const email = await AsyncStorage.getItem('email');
-        const password = await AsyncStorage.getItem('password');
-       const response = await fetch('http:/192.168.1.7/code3/index.php/admin/ApiController/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
-        });
-
-        const data = await response.json();
-        navigation.navigate(ROUTES.HOME);
+        const storedEmail = await AsyncStorage.getItem('email');
+        navigation.navigate('Home'); // Replace 'Home' with your actual home route name
       }
     } catch (error) {
       console.error('Error:', error);
     }
   };
 
+
   const handleLogin = async () => {
-  //  navigation.navigate(ROUTES.HOME);
     if (email !== '' && password !== '') {
       try {
-        const response = await fetch('http:/192.168.1.7/code3/index.php/admin/ApiController/login', {
+        const response = await fetch('http://192.168.1.6:5000/login', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'application/json',
           },
-          body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
         });
-
+  
+        if (!response.ok) {
+          throw new Error('Network response was not ok.');
+        }
+  
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+          throw new Error('Unexpected content type in response.');
+        }
+  
         const data = await response.json();
-        console.log(data); // Log the response for debugging
-
-        if (response.ok) {
-          // Login successful, store the user type in async storage
-          // await AsyncStorage.setItem('isLoggedIn', 'true');
-          await AsyncStorage.setItem('email',email);
-          // await AsyncStorage.setItem('teacherName',data.teacherName);
-          // await AsyncStorage.setItem('id',data.id);
-          // await AsyncStorage.setItem('className',data.className);
-          await AsyncStorage.setItem('password',password);
-          // fetchTeacherDetails(data.email);
-          navigation.navigate(ROUTES.HOME);
+        console.log(data)
+  
+        if (data.message === 'Login successful') {
+          await AsyncStorage.setItem('isLoggedIn', 'true');
+          await AsyncStorage.setItem('email', email);
+          // await AsyncStorage.setItem('name',data.name);
+          navigation.navigate('Home'); // Replace 'Home' with your actual home route name
         } else {
-          // Login failed, display error message
           Alert.alert('Login Failed', 'Please enter valid login details');
-          // navigation.navigate(ROUTES.HOME);
         }
       } catch (error) {
         console.error('Error:', error);
@@ -76,6 +196,7 @@ const Login = ({ navigation }) => {
       Alert.alert('Info...', 'Please enter both User ID and password.');
     }
   };
+  
 
   return (
     <View style={styles.container}>
@@ -86,7 +207,7 @@ const Login = ({ navigation }) => {
           style={styles.inputText}
           placeholder="User ID"
           placeholderTextColor="#003f5c"
-          onChangeText={text => setemail(text)}
+          onChangeText={(text) => setemail(text)}
           value={email}
         />
       </View>
@@ -96,24 +217,21 @@ const Login = ({ navigation }) => {
           placeholder="Password"
           placeholderTextColor="#003f5c"
           secureTextEntry={true}
-          onChangeText={text => setPassword(text)}
+          onChangeText={(text) => setPassword(text)}
           value={password}
         />
       </View>
-      
+
       <TouchableOpacity style={styles.loginBtn} onPress={handleLogin}>
         <Text style={styles.loginText}>LOGIN</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate(ROUTES.FORGOT_PASSWORD)}>
+      <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
         <Text style={styles.forgot}>Forgot Password?</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate(ROUTES.REGISTER)}>
+      <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('Register')}>
         <Text style={styles.loginText}>Register/signup</Text>
       </TouchableOpacity>
-      {/* <TouchableOpacity onPress={() => navigation.navigate(ROUTES.REGISTER)}>
-        <Text style={styles.signup}>Don't have an account? Sign up</Text>
-      </TouchableOpacity> */}
     </View>
   );
 };
@@ -125,10 +243,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  logo:{
+  logo: {
     // height:150,
     // width:150,
-    marginBottom:20,
+    marginBottom: 20,
   },
   name: {
     fontWeight: 'bold',

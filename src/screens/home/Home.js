@@ -174,27 +174,27 @@ const ITEM_HEIGHT = width / 2 - 60;
 
 const Home = ({ navigation }) => {
   const data = [
-    {
-      id: 1,
-      title: 'Add Students',
-      route: ROUTES.AddStudent,
-      image: require('../../assets/Screening.png'),
-    },
-    {
-      id: 2,
-      title: 'Manage Attandance',
-      route: ROUTES.Attendance,
-      image: require('../../assets/attendance.png'),
-    },
+    // {
+    //   id: 1,
+    //   title: 'Add Students',
+    //   route: ROUTES.AddStudent,
+    //   image: require('../../assets/Screening.png'),
+    // },
+    // {
+    //   id: 2,
+    //   title: 'Manage Attandance',
+    //   route: ROUTES.Attendance,
+    //   image: require('../../assets/attendance.png'),
+    // },
     {
       id: 3,
-      title: 'Assign Homework',
+      title: 'Test',
       route: ROUTES.HomeWork,
       image: require('../../assets/homework.png'),
     },
     {
       id: 4,
-      title: 'Update Result',
+      title: 'Result',
       route: ROUTES.ACTIVITES,
       image: require('../../assets/update.png'),
     },
