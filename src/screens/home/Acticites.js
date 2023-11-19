@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect} from 'react';
 import { StyleSheet,Image, Text, SafeAreaView, TouchableOpacity, ScrollView, View } from 'react-native';
 
 const Activites = ({ navigation }) => {
@@ -12,6 +12,8 @@ const Activites = ({ navigation }) => {
 
   const handleSubmit = async () => {
     try {
+      console.log('selectedOptions',selectedOptions);
+
       // Replace 'YOUR_API_ENDPOINT' with your actual backend API endpoint
       const apiEndpoint = 'YOUR_API_ENDPOINT';
       const response = await fetch(apiEndpoint, {
@@ -24,33 +26,51 @@ const Activites = ({ navigation }) => {
 
       // Handle the response from the backend as needed
       console.log('API Response:', response);
+      console.log('selectedOptions',selectedOptions);
     } catch (error) {
       console.error('Error submitting quiz:', error);
     }
   };
 
-  const questions = [
-    {
-      question: 'What is your age?',
-      options: ['- Under 18',
-   '- 18-24',
-   '- 25-34',
-   '- 35-44',
-   '- 45 or older'],
-    },
-    {
-      question: 'What is your gender?',
-      options: ['Male','Female','Non-binary','Prefer not to say']
-    },
-    
-    {
-      question: '',
-      options: []
-      },
-    
-    
-    // Add more questions here...
-  ];
+  const [questions, setQuestions] = useState([]);
+
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      try {
+        const apiEndpoint = 'http://192.168.1.6:5000/fetch_questions';
+        const response = await fetch(apiEndpoint);
+        const data = await response.json();
+
+        // Update the state with fetched questions
+        setQuestions(data.questions);
+      } catch (error) {
+        console.error('Error fetching questions:', error);
+      }
+    };
+
+    fetchQuestions();
+  }, []);
+
+  const renderOptions = (options) => {
+    return options.map((option, index) => (
+      <TouchableOpacity
+        key={index}
+        style={styles.optionContainer}
+        onPress={() => handleOptionSelect(questionIndex, index)}
+      >
+        <Text style={styles.optionText}>{option}</Text>
+      </TouchableOpacity>
+    ));
+  };
+
+  const renderQuestions = () => {
+    return questions.map((questionData, questionIndex) => (
+      <View key={questionIndex} style={styles.questionContainer}>
+        <Text style={styles.questionText}>{`Question ${questionIndex + 1}: ${questionData.question}`}</Text>
+        {renderOptions(questionData.options)}
+      </View>
+    ));
+  };
 
   return (
     <SafeAreaView style={styles.container}>

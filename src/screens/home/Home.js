@@ -180,12 +180,12 @@ const Home = ({ navigation }) => {
     //   route: ROUTES.AddStudent,
     //   image: require('../../assets/Screening.png'),
     // },
-    // {
-    //   id: 2,
-    //   title: 'Manage Attandance',
-    //   route: ROUTES.Attendance,
-    //   image: require('../../assets/attendance.png'),
-    // },
+    {
+      id: 2,
+      title: 'Manage Attandance',
+      route: ROUTES.Attendance,
+      image: require('../../assets/attendance.png'),
+    },
     {
       id: 3,
       title: 'Test',

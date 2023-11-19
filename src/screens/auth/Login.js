@@ -183,7 +183,6 @@ const Login = ({ navigation }) => {
         if (data.message === 'Login successful') {
           await AsyncStorage.setItem('isLoggedIn', 'true');
           await AsyncStorage.setItem('email', email);
-          // await AsyncStorage.setItem('name',data.name);
           navigation.navigate('Home'); // Replace 'Home' with your actual home route name
         } else {
           Alert.alert('Login Failed', 'Please enter valid login details');
