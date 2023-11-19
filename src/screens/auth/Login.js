@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 20,
+    marginTop: 25,
     marginBottom: 10,
     shadowColor: '#000',
     shadowOffset: {
