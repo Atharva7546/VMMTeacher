@@ -1,19 +1,19 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
-import YouTube from 'react-native-youtube';
+// import YouTube from 'react-native-youtube';
 
 
 const App = () => {
   
-<YouTube
+{/* <YouTube
   apiKey="YOUR_YOUTUBE_API_KEY"
   videoId="VIDEO_ID"
   style={styles.video}
-/>
+/> */}
   return (
     <ScrollView style={styles.container}>
-      {/* Dummy YouTube videos */}
-      <View style={styles.videoContainer}>
+      {/* Dummy YouTube videos */} 
+      {/* <View style={styles.videoContainer}>
         <YouTube videoId="VIDEO_ID_1" style={styles.video} />
       </View>
       <View style={styles.videoContainer}>
@@ -21,8 +21,8 @@ const App = () => {
       </View>
       <View style={styles.videoContainer}>
         <YouTube videoId="VIDEO_ID_3" style={styles.video} />
-      </View>
-      {/* Add more videos as needed */}
+      </View> */}
+      {/* {/* Add more videos as needed */}
     </ScrollView>
   );
 };

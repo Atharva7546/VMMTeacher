@@ -152,7 +152,7 @@ function BottomTabNavigator() {
             <Icon name={focused ? 'home' : 'home-outline'} size={28} color={color} />
           ),
           headerShown: true,
-          title: 'Teacher',
+          title: 'MindFit',
           headerLeft: () => {
             return (
               <TouchableOpacity onPress={() => navigation.openDrawer()}>

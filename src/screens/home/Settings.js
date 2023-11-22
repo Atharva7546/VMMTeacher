@@ -3,6 +3,7 @@ import { StyleSheet, Text, SafeAreaView, TouchableOpacity, Image, View } from 'r
 import { COLORS, ROUTES } from '../../constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
+import LinearGradient from 'react-native-linear-gradient';
 
 
 const Settings = ({ navigation }) => {
@@ -18,7 +19,7 @@ const Settings = ({ navigation }) => {
       try {
         const savedEmail = await AsyncStorage.getItem('email');
         if (savedEmail) {
-          const response = await fetch(`http://192.168.1.6:5000/getdetails?email=${savedEmail}`);
+          const response = await fetch(`http://192.168.1.8:5000/getdetails?email=${savedEmail}`);
           if (response.ok) {
             const data = await response.json();
             console.log(data);
@@ -49,6 +50,10 @@ const Settings = ({ navigation }) => {
     };
 
   return (
+    <LinearGradient
+      colors={['#6441A5', '#2a0845']} // Example gradient colors
+      style={styles.gradientContainer}
+    >
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
         <Image source={userData.profilePic} style={styles.profilePic} />
@@ -65,6 +70,7 @@ const Settings = ({ navigation }) => {
         </TouchableOpacity>
       </View>
     </SafeAreaView>
+    </LinearGradient>
   );
 };
 
@@ -96,6 +102,9 @@ const styles = StyleSheet.create({
   userInfo: {
     marginVertical: 5,
     fontSize: 16,
+  },
+  gradientContainer: {
+    flex: 1,
   },
   profilePic: {
     width: 120,
