@@ -32,7 +32,7 @@ export default  {
   Attendance:'Attendance',
   HomeWork:'HomeWork',
   ACTIVITES:'Activites',
-  // TASK:'Task',
+  // Wallet:'Wallet',
   Student_Details:'Student_Details',
   PROFILE:'Profile',
   ADD:'Add',

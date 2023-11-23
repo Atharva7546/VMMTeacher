@@ -364,8 +364,8 @@ const Home = ({ navigation }) => {
     // {
     //   id: 6,
     //   title: 'Send Notifications',
-    //   route: ROUTES.TASK,
-    //   image: require('../../assets/notification.png'),
+    //   route: ROUTES.Attendance,
+    //   image: require('../../assets/immigration.png'),
     // },
   ];
 
