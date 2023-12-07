@@ -231,6 +231,7 @@ const App = () => {
       { category: 'Anxiety', score: 70 },
       { category: 'Mood', score: 85 },
     ],
+    
     recommendations: [
       {
         id: 1,
