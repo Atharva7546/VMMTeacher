@@ -66,7 +66,8 @@ const Activities = ({ navigation }) => {
   }, []);
 
   const renderOptions = (options, questionIndex) => {
-    return options.map((option) => (
+    const filteredOptions = options.filter(option => option);
+    return filteredOptions.map((option) => (
       <TouchableOpacity
         key={option}
         style={[
@@ -78,7 +79,7 @@ const Activities = ({ navigation }) => {
       >
         <Text style={styles.optionText}>{option}</Text>
       </TouchableOpacity>
-    ));
+    )); 
   };
 
   const renderQuestion = () => {
